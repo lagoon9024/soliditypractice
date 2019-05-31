@@ -11,7 +11,7 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 
 const smartContract = web3.eth
   .contract(abi)
-  .at('eth.account address');
+  .at('contract address');
 
 function show() {
   smartContract.chat().watch((err, res) => {
