@@ -3,7 +3,7 @@ pragma solidity >=0.4.22 <0.7.0;
 contract ProductContract {
     uint8 numberOfProducts; // 총 제품의 수입니다.
     uint8 corpcount;
-    address Owner = address(0x46cac3dab2d84e323aab6d28b8d3322b1a6b12ad);
+    address Owner = address(owners address);
 
     struct myStruct {
         uint   number;
