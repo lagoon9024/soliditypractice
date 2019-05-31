@@ -15,7 +15,7 @@ const smartContract = web3.eth.contract(abi).at(contractAddress);
 
 
 function shownewList() {  
-  const ntable = document.getElementById('table2');
+  const ntable = document.getElementById('body2');
   smartContract.product().watch((err, res) => {
     if (!err) {
       console.dir(res);
@@ -31,16 +31,16 @@ function shownewList() {
       ncell4.innerHTML = res.args.number.c[0];
       ncell2.innerHTML = res.args.productName;
       ncell3.innerHTML = res.args.location;
-      ncell1.style.width = '60%';
+      ncell1.style.width = '40%';
       ncell1.innerHTML = new Date(res.args.timestamp.c[0] * 1000);
     }
   });
 }
 
 function showList() {
-  
+  $( '#table1 > tbody').empty();
   if(chkempty1()){ 
-  const table = document.getElementById('table1');
+  const table = document.getElementById('body1');
   const length = smartContract.getNumOfProducts();
   const clength=smartContract.getcorpcount();
   const account=document.getElementById('account').value;
@@ -74,7 +74,7 @@ function showList() {
     cell4.innerHTML = strArray[0];
     cell2.innerHTML = strArray[1];
     cell3.innerHTML = strArray[2];
-    cell1.style.width = '60%';
+    cell1.style.width = '40%';
     cell1.innerHTML = timestamp;
   }
 }
@@ -108,14 +108,13 @@ function newAccount() {
 
 function addProduct() {
   if(chkempty1()&&chkempty2()){
+    
   const pronumber = document.getElementById('pronumber').value;
   const proname = document.getElementById('proname').value;
   const proloc = document.getElementById('proloc').value;
   const account = document.getElementById('account').value;
-  const username=document.getElementById('username').value;
-  const corpname=document.getElementById('corp_name').value;
   const clength=smartContract.getcorpcount();
-   
+  
     for(let i=0; i<clength; i++){
         const corpinfo = smartContract.getaccountStruct(i);
         const toString = corpinfo.toString();
@@ -127,12 +126,12 @@ function addProduct() {
       pronumber,
       proname,
       proloc,
-      username,
-      corpname,
+      account,
       { from: account, gas: 2000000 },
       (err, result) => {
         if (!err) {alert('트랜잭션이 성공적으로 전송되었습니다.\n' + result);
         web3.personal.lockAccount(account);}
+        shownewList();
       }
     );
   }
@@ -142,8 +141,10 @@ function chkempty1(){
   const account = document.getElementById('account').value;
   const username=document.getElementById('username').value;
   const corpname=document.getElementById('corp_name').value;
+  console.log(username);
+  
   if(web3.personal.unlockAccount(account, document.getElementById('pass').value)){
-  if(account==undefined || username ==undefined || corpname =='nonchoose') {alert("value undefined");return false;}
+  if(account=="" || username =="" || corpname =='nonchoose') {alert("value undefined");return false;}
   else return true;
   }
   else{alert("wrong password");return false;}
@@ -151,15 +152,13 @@ function chkempty1(){
 function chkempty2(){
   const pronumber = document.getElementById('pronumber').value;
   const proname = document.getElementById('proname').value;
-  const proloc = document.getElementById('proloc').value;a
-  if(pronumber==undefined || proname ==undefined || proloc ==undefined) {alert("value undefined");return false;}
+  const proloc = document.getElementById('proloc').value;
+  if(pronumber=="" || proname =="" || proloc =="") {alert("value undefined");return false;}
   else return true;
 }
 
 
-$(function() {
-  shownewList();
-});
 
+function datasort(){
 
-//const selection = document.getElementById('scorp_name').value;
+}
