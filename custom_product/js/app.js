@@ -1,6 +1,6 @@
 typeof web3 !== 'undefined'
   ? (web3 = new Web3(web3.currentProvider))
-  : (web3 = new Web3(new Web3.providers.HttpProvider('http://192.168.0.106:8545')));
+  : (web3 = new Web3(new Web3.providers.HttpProvider('http://private server address:8545')));
 
 if (web3.isConnected()) {
   console.log('connected');
@@ -9,7 +9,7 @@ if (web3.isConnected()) {
   exit;
 }
 
-const contractAddress = '0xaad0229387246e9812faa11fb0a38019aaa8fe04';
+const contractAddress = 'your contract address';
 const smartContract = web3.eth.contract(abi).at(contractAddress);
 
 
