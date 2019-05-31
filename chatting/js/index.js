@@ -2,7 +2,7 @@
 //connect web3 and check if web3 is connected correctly
 if (typeof web3 !== 'undefined') web3 = new Web3(web3.currentProvider);
 // set the provider you want from Web3.providers
-else web3 = new Web3(new Web3.providers.HttpProvider('http://192.168.0.106:8545'));
+else web3 = new Web3(new Web3.providers.HttpProvider('http://private server address:8545'));
 
 if (web3.isConnected()) console.log('connected');
 else console.log('not connected');
@@ -11,7 +11,7 @@ web3.eth.defaultAccount = web3.eth.accounts[0];
 
 const smartContract = web3.eth
   .contract(abi)
-  .at('0x4ab359049eba6c776bceaf66eae82e918489c081');
+  .at('eth.account address');
 
 function show() {
   smartContract.chat().watch((err, res) => {
