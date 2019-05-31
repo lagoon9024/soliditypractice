@@ -40,10 +40,15 @@ contract ProductContract {
         emit welcome(_account, _username, _corpname);
     }
 
-    function addProStru (uint _initNumber, string memory _firstString, string memory _secondString, string memory _username, string memory _corpname) public {
-        productes.push(myStruct(_initNumber, _firstString, _secondString, block.timestamp, _username, _corpname)) -1;
+    function addProStru (uint _initNumber, string memory _firstString, string memory _secondString, address _account) public {
+       uint tmp;
+        for(uint i=0; i<corpcount; i++){
+            if(keccak256(abi.encodePacked(_account)) == keccak256(abi.encodePacked(corps[i]._persinfo))){tmp=i; break;}
+        }
+        
+        productes.push(myStruct(_initNumber, _firstString, _secondString, block.timestamp, corps[i].userid, corps[i].corpid)) -1;
         numberOfProducts++;
-        emit product(_initNumber, _firstString, _secondString, block.timestamp, _username, _corpname);
+        emit product(_initNumber, _firstString, _secondString, block.timestamp, corps[i].userid, corps[i].corpid);
     }
 
     //제품 등록의 수를 리턴합니다.
@@ -55,7 +60,7 @@ contract ProductContract {
         return corpcount;
     }
 
-    //번호에 해당하는 제품의 이름을 리턴합니다.owner의 경우 전체, 유저의 경우 해당회사 자료만 리턴
+    //번호에 해당하는 제품의 이름을 리턴합니다.
     function getProductStruct(uint _corpidx, uint _index) public view returns (uint, string memory, string memory, uint256, string memory, string memory) {
         if(keccak256(abi.encodePacked(corps[_corpidx]._persinfo))==keccak256(abi.encodePacked(Owner))){
         return (productes[_index].number, 
