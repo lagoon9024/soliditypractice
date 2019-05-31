@@ -1,4 +1,4 @@
-﻿pragma solidity >=0.4.22 <0.7.0;
+pragma solidity >=0.4.22 <0.7.0;
 
 contract ProductContract {
     uint8 numberOfProducts; // 총 제품의 수입니다.
@@ -55,19 +55,27 @@ contract ProductContract {
         return corpcount;
     }
 
-    //번호에 해당하는 제품의 이름을 리턴합니다.
+    //번호에 해당하는 제품의 이름을 리턴합니다.owner의 경우 전체, 유저의 경우 해당회사 자료만 리턴
     function getProductStruct(uint _corpidx, uint _index) public view returns (uint, string memory, string memory, uint256, string memory, string memory) {
-        require(keccak256(abi.encodePacked(corps[_corpidx].corpid))==keccak256(abi.encodePacked(productes[_index].corpid)));
+        if(keccak256(abi.encodePacked(corps[_corpidx]._persinfo))==keccak256(abi.encodePacked(Owner))){
         return (productes[_index].number, 
         productes[_index].productName, 
         productes[_index].locaton, 
         productes[_index].timestamp, 
         productes[_index].corpid, 
         productes[_index].userid);
+        }
+        else require(keccak256(abi.encodePacked(corps[_corpidx].corpid))==keccak256(abi.encodePacked(productes[_index].corpid)));
+        {return (productes[_index].number, 
+        productes[_index].productName, 
+        productes[_index].locaton, 
+        productes[_index].timestamp, 
+        productes[_index].corpid, 
+        productes[_index].userid);}
         
     }
 
-    function getaccountStruct(uint _index) public view returns (address, string memory, string memory) {
-        return (corps[_index]._persinfo, corps[_index].userid, corps[_index].corpid);
+    function getaccountStruct(uint _index) public view returns (uint, string memory, string memory) {
+        return (uint(corps[_index]._persinfo)%10000, corps[_index].userid, corps[_index].corpid);//address의 뒷자리 4숫자만 리턴
     }
 }
