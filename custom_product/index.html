@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+  </head>
+
+  <body>
+      
+    <h1>공산품 생산관리</h1>
+    <div>이름:
+          <input
+            type="text"
+            id="username"
+            value=""
+            placeholder="이름을 입력해주세요."
+            style="width: 200px;"
+          />
+          <p></p>
+          회사명:
+          <select id = "corp_name">
+            <option value = "nonchoose" selected="selected">회사 선택</option>
+            <option value = "Acorp">A사</option>
+            <option value = "Bcorp">B사</option>
+            <option value = "Ccorp">C사</option>
+            <option value = "Dcorp">D사</option>
+            <option value = "Ecorp">E사</option>
+          </select>
+          <p></p>
+          <p></p>
+          계정:
+        <input
+            type="text"
+            id="account"
+            value=""
+            placeholder="ETH 주소를 입력해주세요."
+            style="width: 200px;"
+          />
+          <p></p>
+         패스워드:
+        <input
+            type="password"
+            id="pass"
+            value=""
+            placeholder="ETH 비밀번호를 입력해주세요."
+            style="width: 200px;"
+        />
+        <button onClick="newAccount()">회원 등록하기</button>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <br />
+    <div>
+      <input type="text" id="proname" placeholder="Product ID" value="" style="width: 200px;" />
+      <input type="text" id="proloc" placeholder="Location" value="" />
+      <input type="text" id="pronumber" placeholder="Amount" value="" />
+
+      <button onClick="addProduct()">제품 등록하기</button>
+      <table style="width:100%" id="table2"></table>
+
+      
+    </div>
+    <table style="width:100%" id="table2"></table>
+    <p></p>
+    <p></p>
+    <p></p>
+    <h1>SHOW TABLE
+    <button onClick="showList()">등록 제품 확인</button></h1>
+    <table style="width:100%" id="table1"><th>등록시각</th><th>제품명</th><th>생산지</th><th>수량</th></table>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/lib/web3-light@0.20.6.js"></script>
+    <script type="text/javascript" src="./js/abi.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+  </body>
+</html>
