@@ -57,17 +57,21 @@
       <input type="text" id="pronumber" placeholder="Amount" value="" />
 
       <button onClick="addProduct()">제품 등록하기</button>
-      <table style="width:100%" id="table2"></table>
-
-      
     </div>
-    <table style="width:100%" id="table2"></table>
+    <table style="width:100%" id="table2">
+    <thead><th style="width:40%">등록시각</th><th>제품명</th><th>등록위치</th><th>수량</th><th>제조사</th><th>제조자</th>   
+    </thead>
+    <tbody id="body2"></tbody>
+    </table>
     <p></p>
     <p></p>
     <p></p>
     <h1>SHOW TABLE
     <button onClick="showList()">등록 제품 확인</button></h1>
-    <table style="width:100%" id="table1"></table>
+    <table style="width:100%" id="table1">
+    <thead><th style="width:40%">등록시각</th><th>제품명</th><th>등록위치</th><th>수량</th><th>제조사</th><th>제조자</th>   
+    </thead>
+    <tbody id="body1"></tbody></table>
     
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
