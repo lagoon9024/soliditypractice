@@ -1,0 +1,27 @@
+{
+  "name": "Test Application",
+  "short_name": "Test App",
+  "description": "PWA SPlash Screens",
+  "icons": [
+    {
+      "src": "/icon/iconx1.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/icon/iconx2.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/icon/iconx3.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html?launcher=true",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
