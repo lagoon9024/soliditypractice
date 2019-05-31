@@ -9,7 +9,7 @@ if (web3.isConnected()) {
   exit;
 }
 
-const contractAddress = '0xd460c56fe5ee49dab19aa2a4f3e75a9c4c675009';
+const contractAddress = '0xaad0229387246e9812faa11fb0a38019aaa8fe04';
 const smartContract = web3.eth.contract(abi).at(contractAddress);
 
 
@@ -77,7 +77,7 @@ function showList() {
     cell1.style.width = '40%';
     cell1.innerHTML = timestamp;
   }
-}
+}alert("Transaction success");
 }
 }
 
@@ -114,14 +114,15 @@ function addProduct() {
   const proloc = document.getElementById('proloc').value;
   const account = document.getElementById('account').value;
   const clength=smartContract.getcorpcount();
-  
-    for(let i=0; i<clength; i++){
-        const corpinfo = smartContract.getaccountStruct(i);
-        const toString = corpinfo.toString();
-        const strArray = toString.split(',');
-        if(account==strArray[0]) break;
-        else if(i==clength-1 && account!=strArray[0]) {alert('등록되지 않은 회원입니다.\n'); return;}
-      }
+  if(clength==0) {alert('등록되지 않은 회원입니다.\n'); return;}
+
+  for(let i=0; i<clength; i++){
+      const corpinfo = smartContract.getaccountStruct(i);
+      const toString = corpinfo.toString();
+      const strArray = toString.split(',');
+      if(account==strArray[0]) break;
+      else if(i==clength-1 && account!=strArray[0]) {alert('등록되지 않은 회원입니다.\n'); return;}
+  }
     smartContract.addProStru(
       pronumber,
       proname,
@@ -141,13 +142,12 @@ function chkempty1(){
   const account = document.getElementById('account').value;
   const username=document.getElementById('username').value;
   const corpname=document.getElementById('corp_name').value;
-  console.log(username);
+
   
   if(web3.personal.unlockAccount(account, document.getElementById('pass').value)){
   if(account=="" || username =="" || corpname =='nonchoose') {alert("value undefined");return false;}
   else return true;
   }
-  else{alert("wrong password");return false;}
 }
 function chkempty2(){
   const pronumber = document.getElementById('pronumber').value;
