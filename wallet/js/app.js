@@ -1,6 +1,6 @@
 ﻿typeof web3 !== 'undefined'
   ? (web3 = new Web3(web3.currentProvider))
-  : (web3 = new Web3(new Web3.providers.HttpProvider('http://192.168.0.106:8545')));
+  : (web3 = new Web3(new Web3.providers.HttpProvider('http://private server address:8545')));
 
 if (web3.isConnected()) {
   console.log('connected');
