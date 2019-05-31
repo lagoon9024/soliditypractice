@@ -80,7 +80,7 @@ contract ProductContract {
         
     }
 
-    function getaccountStruct(uint _index) public view returns (uint, string memory, string memory) {
-        return (uint(corps[_index]._persinfo)%10000, corps[_index].userid, corps[_index].corpid);//address의 뒷자리 4숫자만 리턴
+    function getaccountStruct(uint _index) public view returns (address, string memory, string memory) {
+        return (corps[_index]._persinfo, corps[_index].userid, corps[_index].corpid);//address의 뒷자리 4숫자만 리턴
     }
 }
